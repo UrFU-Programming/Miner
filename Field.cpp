@@ -14,7 +14,7 @@ void Field::setSize(int width, int height)
 
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            m_cells.append(new Cell(x, y));
+            m_cells.append(new Cell(this, x, y));
         }
     }
 }

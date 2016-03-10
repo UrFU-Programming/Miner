@@ -1,10 +1,12 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 
+class Field;
+
 class Cell
 {
 public:
-    Cell(int x, int y);
+    Cell(Field *field, int x, int y);
 
     int x() const { return m_x; }
     int y() const { return m_y; }
@@ -13,6 +15,8 @@ public:
     void setHaveMine(bool haveMine);
 
 private:
+    Field *m_field;
+
     int m_x;
     int m_y;
 
