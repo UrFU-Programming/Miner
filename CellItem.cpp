@@ -13,6 +13,10 @@ CellItem::CellItem(Cell *cell) :
     m_cell = cell;
     m_text = new QGraphicsSimpleTextItem(this);
 
+    QFont f = m_text->font();
+    f.setPixelSize(cellSize - 4);
+    m_text->setFont(f);
+
     setPos(m_cell->x() * cellSize, m_cell->y() * cellSize);
 }
 
