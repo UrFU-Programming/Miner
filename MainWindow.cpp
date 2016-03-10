@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
             m_scene->addItem(new CellItem(m_field->cellAt(x, y)));
         }
     }
+
+    m_field->generate();
 }
 
 MainWindow::~MainWindow()

@@ -24,6 +24,22 @@ void Field::setNumberOfMines(int number)
     m_numberOfMines = number;
 }
 
+void Field::generate()
+{
+    int minesToPlace = m_numberOfMines;
+
+    while (minesToPlace > 0) {
+        Cell *cell = m_cells.at(qrand() % m_cells.count());
+
+        if (cell->haveMine()) {
+            continue;
+        }
+
+        cell->setHaveMine(true);
+        --minesToPlace;
+    }
+}
+
 Cell *Field::cellAt(int x, int y) const
 {
     return m_cells.at(x + y * m_width);
