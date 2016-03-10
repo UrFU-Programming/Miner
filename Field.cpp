@@ -42,5 +42,12 @@ void Field::generate()
 
 Cell *Field::cellAt(int x, int y) const
 {
+    if (x < 0 || x >= m_width) {
+        return 0;
+    }
+    if (y < 0 || y >= m_height) {
+        return 0;
+    }
+
     return m_cells.at(x + y * m_width);
 }
