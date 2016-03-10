@@ -32,6 +32,10 @@ void Cell::setHaveMine(bool haveMine)
 
 void Cell::open()
 {
+    if (m_open) {
+        return;
+    }
+
     m_open = true;
 }
 
