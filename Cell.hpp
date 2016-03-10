@@ -18,6 +18,9 @@ public:
     bool haveMine() const { return m_haveMine; }
     void setHaveMine(bool haveMine);
 
+    bool isOpen() const { return m_open; }
+    void open();
+
     QVector<Cell*> getNeighbors() const;
 
 private:
@@ -27,6 +30,7 @@ private:
     int m_y;
 
     bool m_haveMine;
+    bool m_open;
 
 };
 

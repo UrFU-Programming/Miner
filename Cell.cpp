@@ -10,6 +10,7 @@ Cell::Cell(Field *field, int x, int y)
     m_y = y;
 
     m_haveMine = false;
+    m_open = false;
 }
 
 int Cell::minesAround() const
@@ -27,6 +28,11 @@ int Cell::minesAround() const
 void Cell::setHaveMine(bool haveMine)
 {
     m_haveMine = haveMine;
+}
+
+void Cell::open()
+{
+    m_open = true;
 }
 
 void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
