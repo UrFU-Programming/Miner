@@ -1,5 +1,6 @@
 #include "CellItem.hpp"
 
+#include <QGraphicsSceneMouseEvent>
 #include <QGraphicsSimpleTextItem>
 #include <QPainter>
 
@@ -18,6 +19,8 @@ CellItem::CellItem(Cell *cell) :
     m_text->setFont(f);
 
     setPos(m_cell->x() * cellSize, m_cell->y() * cellSize);
+
+    setAcceptedMouseButtons(Qt::LeftButton);
 }
 
 QRectF CellItem::boundingRect() const
@@ -32,4 +35,18 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     if (m_cell->haveMine()) {
         m_text->setText("+");
     }
+}
+
+void CellItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    event->accept();
+}
+
+void CellItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        m_cell->open();
+    }
+
+    update();
 }
