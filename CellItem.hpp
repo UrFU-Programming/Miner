@@ -4,6 +4,7 @@
 #include <QGraphicsItem>
 
 class Cell;
+class QGraphicsSimpleTextItem;
 
 class CellItem : public QGraphicsItem
 {
@@ -17,6 +18,7 @@ public:
 
 private:
     Cell *m_cell;
+    QGraphicsSimpleTextItem *m_text;
 };
 
 #endif // CELLITEM_HPP
