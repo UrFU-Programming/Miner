@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_scene = new QGraphicsScene();
     m_field = new Field();
     m_field->setSize(8, 8);
+    m_field->setNumberOfMines(10);
 
     ui->graphicsView->setScene(m_scene);
 

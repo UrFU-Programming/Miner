@@ -19,6 +19,11 @@ void Field::setSize(int width, int height)
     }
 }
 
+void Field::setNumberOfMines(int number)
+{
+    m_numberOfMines = number;
+}
+
 Cell *Field::cellAt(int x, int y) const
 {
     return m_cells.at(x + y * m_width);
