@@ -1,11 +1,14 @@
-#ifndef MAINWINDOW_HPP
-#define MAINWINDOW_HPP
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
 
 namespace Ui {
 class MainWindow;
 }
+
+class QGraphicsScene;
+class Field;
 
 class MainWindow : public QMainWindow
 {
@@ -17,6 +20,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QGraphicsScene *m_scene;
+    Field *m_field;
 };
 
-#endif // MAINWINDOW_HPP
+#endif // MAINWINDOW_H
