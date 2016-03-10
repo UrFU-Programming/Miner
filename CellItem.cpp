@@ -30,6 +30,9 @@ QRectF CellItem::boundingRect() const
 
 void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    painter->setRenderHint(QPainter::Antialiasing);
+    painter->setRenderHint(QPainter::HighQualityAntialiasing);
+
     painter->drawRect(0, 0, cellSize, cellSize);
 
     if (m_cell->haveMine()) {
