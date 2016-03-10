@@ -6,6 +6,7 @@
 #include "CellItem.hpp"
 
 #include <QGraphicsScene>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,4 +33,14 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    QTimer::singleShot(0, this, SLOT(updateSceneScale()));
+}
+
+void MainWindow::updateSceneScale()
+{
+    ui->graphicsView->fitInView(m_scene->sceneRect(), Qt::KeepAspectRatio);
 }

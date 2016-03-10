@@ -18,6 +18,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+protected:
+    void resizeEvent(QResizeEvent *event);
+
+protected slots:
+    void updateSceneScale();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;
