@@ -13,6 +13,8 @@ public:
     int x() const { return m_x; }
     int y() const { return m_y; }
 
+    int minesAround() const;
+
     bool haveMine() const { return m_haveMine; }
     void setHaveMine(bool haveMine);
 

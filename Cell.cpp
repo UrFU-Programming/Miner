@@ -12,6 +12,18 @@ Cell::Cell(Field *field, int x, int y)
     m_haveMine = false;
 }
 
+int Cell::minesAround() const
+{
+    int mines = 0;
+    foreach (Cell *cell, getNeighbors()) {
+        if (cell->haveMine()) {
+            ++mines;
+        }
+    }
+
+    return mines;
+}
+
 void Cell::setHaveMine(bool haveMine)
 {
     m_haveMine = haveMine;
