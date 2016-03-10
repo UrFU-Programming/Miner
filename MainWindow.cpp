@@ -5,6 +5,7 @@
 
 #include "CellItem.hpp"
 
+#include <QGLWidget>
 #include <QGraphicsScene>
 #include <QTimer>
 
@@ -20,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_field->setNumberOfMines(10);
 
     ui->graphicsView->setScene(m_scene);
+    ui->graphicsView->setViewport(new QGLWidget());
 
     for (int y = 0; y < m_field->height(); ++y) {
         for (int x = 0; x < m_field->width(); ++x) {
