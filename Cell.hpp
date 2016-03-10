@@ -1,6 +1,8 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 
+#include <QVector>
+
 class Field;
 
 class Cell
@@ -13,6 +15,8 @@ public:
 
     bool haveMine() const { return m_haveMine; }
     void setHaveMine(bool haveMine);
+
+    QVector<Cell*> getNeighbors() const;
 
 private:
     Field *m_field;
