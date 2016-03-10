@@ -37,6 +37,12 @@ void Cell::open()
     }
 
     m_open = true;
+
+    if (minesAround() == 0) {
+        for (Cell *cell : getNeighbors()) {
+            cell->open();
+        }
+    }
 }
 
 void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
