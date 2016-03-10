@@ -35,6 +35,8 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
     if (m_cell->haveMine()) {
         m_text->setText("+");
+    } else if (m_cell->minesAround() > 0) {
+        m_text->setText(QString::number(m_cell->minesAround()));
     }
 }
 
