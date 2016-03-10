@@ -43,6 +43,7 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     } else {
         painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::lightGray);
     }
+    m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
 }
 
 void CellItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
