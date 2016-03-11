@@ -16,7 +16,7 @@ Cell::Cell(Field *field, int x, int y)
 int Cell::minesAround() const
 {
     int mines = 0;
-    foreach (Cell *cell, getNeighbors()) {
+    for (Cell *cell : getNeighbors()) {
         if (cell->haveMine()) {
             ++mines;
         }
