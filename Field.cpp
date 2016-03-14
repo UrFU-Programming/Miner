@@ -42,12 +42,16 @@ void Field::generate(int x, int y)
 {
     m_generated = true;
 
+    Cell *banned = cellAt(x, y);
+    QVector<Cell*> bannedCells = banned->getNeighbors();
+    bannedCells.append(banned);
+
     int minesToPlace = m_numberOfMines;
 
     while (minesToPlace > 0) {
         Cell *cell = m_cells.at(qrand() % m_cells.count());
 
-        if (cell->x() == x && cell->y() == y) {
+        if (bannedCells.contains(cell)) {
             continue;
         }
 
