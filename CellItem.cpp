@@ -39,9 +39,12 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
             m_text->setText("+");
         } else if (m_cell->minesAround() > 0) {
             m_text->setText(QString::number(m_cell->minesAround()));
+        } else {
+            m_text->setText("");
         }
     } else {
         painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::lightGray);
+        m_text->setText("");
     }
     m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
 }
