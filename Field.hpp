@@ -16,7 +16,7 @@ public:
     void setNumberOfMines(int number);
 
     void prepare();
-    void generate();
+    void generate(int x, int y);
 
     int width() const { return m_width; }
     int height() const { return m_height; }

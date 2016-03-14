@@ -38,7 +38,7 @@ void Field::prepare()
     }
 }
 
-void Field::generate()
+void Field::generate(int x, int y)
 {
     m_generated = true;
 
@@ -46,6 +46,10 @@ void Field::generate()
 
     while (minesToPlace > 0) {
         Cell *cell = m_cells.at(qrand() % m_cells.count());
+
+        if (cell->x() == x && cell->y() == y) {
+            continue;
+        }
 
         if (cell->haveMine()) {
             continue;
