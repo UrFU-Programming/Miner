@@ -7,6 +7,11 @@ Field::Field()
 
 }
 
+bool Field::isGenerated() const
+{
+    return m_generated;
+}
+
 void Field::setSize(int width, int height)
 {
     m_width = width;
@@ -26,6 +31,8 @@ void Field::setNumberOfMines(int number)
 
 void Field::prepare()
 {
+    m_generated = false;
+
     for (Cell *cell : m_cells) {
         cell->reset();
     }
@@ -33,6 +40,8 @@ void Field::prepare()
 
 void Field::generate()
 {
+    m_generated = true;
+
     int minesToPlace = m_numberOfMines;
 
     while (minesToPlace > 0) {

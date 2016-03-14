@@ -10,6 +10,8 @@ class Field
 public:
     Field();
 
+    bool isGenerated() const;
+
     void setSize(int width, int height);
     void setNumberOfMines(int number);
 
@@ -28,6 +30,8 @@ private:
     int m_height;
 
     int m_numberOfMines;
+
+    bool m_generated;
 };
 
 #endif // FIELD_HPP
