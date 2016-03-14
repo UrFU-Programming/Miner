@@ -29,12 +29,19 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
 
-    m_field->generate();
+    newGame();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::newGame()
+{
+    m_field->prepare();
+    m_field->generate();
+    m_scene->update();
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -45,4 +52,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 void MainWindow::updateSceneScale()
 {
     ui->graphicsView->fitInView(m_scene->sceneRect(), Qt::KeepAspectRatio);
+}
+
+void MainWindow::on_action_NewGame_triggered()
+{
+    newGame();
 }

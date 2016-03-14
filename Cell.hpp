@@ -10,6 +10,8 @@ class Cell
 public:
     Cell(Field *field, int x, int y);
 
+    void reset();
+
     int x() const { return m_x; }
     int y() const { return m_y; }
 

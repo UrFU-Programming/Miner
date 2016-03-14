@@ -13,6 +13,12 @@ Cell::Cell(Field *field, int x, int y)
     m_open = false;
 }
 
+void Cell::reset()
+{
+    m_haveMine = false;
+    m_open = false;
+}
+
 int Cell::minesAround() const
 {
     int mines = 0;

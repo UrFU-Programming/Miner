@@ -24,6 +24,13 @@ void Field::setNumberOfMines(int number)
     m_numberOfMines = number;
 }
 
+void Field::prepare()
+{
+    for (Cell *cell : m_cells) {
+        cell->reset();
+    }
+}
+
 void Field::generate()
 {
     int minesToPlace = m_numberOfMines;
