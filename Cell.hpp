@@ -22,6 +22,7 @@ public:
 
     bool isOpen() const { return m_open; }
     void open();
+    void tryToOpenAround();
 
     int mark() const { return m_mark; }
     void toggleMark();

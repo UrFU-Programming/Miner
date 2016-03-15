@@ -56,6 +56,25 @@ void Cell::open()
     }
 }
 
+void Cell::tryToOpenAround()
+{
+    int flags = 0;
+
+    for (Cell *cell : getNeighbors()) {
+        if (cell->mark() == 1) {
+            ++flags;
+        }
+    }
+
+    if (flags == minesAround()) {
+        for (Cell *cell : getNeighbors()) {
+            if (!cell->isOpen() && !cell->mark() == 1) {
+                cell->open();
+            }
+        }
+    }
+}
+
 void Cell::toggleMark()
 {
     if (m_mark == 2) {
