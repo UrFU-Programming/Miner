@@ -17,6 +17,7 @@ void Cell::reset()
 {
     m_haveMine = false;
     m_open = false;
+    m_mark = 0;
 }
 
 int Cell::minesAround() const
@@ -52,6 +53,15 @@ void Cell::open()
         for (Cell *cell : getNeighbors()) {
             cell->open();
         }
+    }
+}
+
+void Cell::toggleMark()
+{
+    if (m_mark == 2) {
+        m_mark = 0;
+    } else {
+        ++m_mark;
     }
 }
 

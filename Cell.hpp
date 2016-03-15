@@ -23,6 +23,9 @@ public:
     bool isOpen() const { return m_open; }
     void open();
 
+    int mark() const { return m_mark; }
+    void toggleMark();
+
     QVector<Cell*> getNeighbors() const;
 
 private:
@@ -33,6 +36,8 @@ private:
 
     bool m_haveMine;
     bool m_open;
+
+    int m_mark;
 
 };
 
