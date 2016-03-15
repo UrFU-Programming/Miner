@@ -19,8 +19,6 @@ CellItem::CellItem(Cell *cell) :
     m_text->setFont(f);
 
     setPos(m_cell->x() * cellSize, m_cell->y() * cellSize);
-
-    setAcceptedMouseButtons(Qt::LeftButton);
 }
 
 QRectF CellItem::boundingRect() const
