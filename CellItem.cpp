@@ -46,14 +46,14 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
         painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::lightGray);
 
         switch (m_cell->mark()) {
-        case 1:
+        case Cell::MarkNothing:
+            m_text->setText("");
+            break;
+        case Cell::MarkFlagged:
             m_text->setText("!");
             break;
-        case 2:
+        case Cell::MarkQuestioned:
             m_text->setText("?");
-            break;
-        default: // case 0
-            m_text->setText("");
             break;
         }
     }
