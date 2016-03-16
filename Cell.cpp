@@ -15,6 +15,8 @@ void Cell::reset()
     m_haveMine = false;
     m_open = false;
     m_mark = MarkNothing;
+
+    emit markChanged(m_mark);
 }
 
 int Cell::minesAround() const
@@ -83,6 +85,8 @@ void Cell::toggleMark()
         m_mark = MarkNothing;
         break;
     }
+
+    emit markChanged(m_mark);
 }
 
 QVector<Cell *> Cell::getNeighbors() const

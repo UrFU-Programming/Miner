@@ -38,6 +38,7 @@ public:
 
 signals:
     void opened(int x, int y);
+    void markChanged(Mark newMark);
 
 private:
     QVector<Cell*> m_neighbors;
