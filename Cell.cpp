@@ -2,7 +2,8 @@
 
 #include "Field.hpp"
 
-Cell::Cell(Field *field, int x, int y)
+Cell::Cell(Field *field, int x, int y) :
+    QObject()
 {
     m_field = field;
 
