@@ -20,7 +20,7 @@ void Field::setSize(int width, int height)
 
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            Cell *cell = new Cell(this, x, y);
+            Cell *cell = new Cell(x, y);
             connect(cell, SIGNAL(opened(int,int)), this, SLOT(onCellOpened(int,int)));
             m_cells.append(cell);
         }

@@ -4,13 +4,11 @@
 #include <QObject>
 #include <QVector>
 
-class Field;
-
 class Cell : public QObject
 {
     Q_OBJECT
 public:
-    Cell(Field *field, int x, int y);
+    Cell(int x, int y);
 
     void reset();
 
@@ -36,8 +34,6 @@ signals:
     void opened(int x, int y);
 
 private:
-    Field *m_field;
-
     QVector<Cell*> m_neighbors;
 
     int m_x;
