@@ -32,6 +32,9 @@ public:
     QVector<Cell*> getNeighbors() const;
     void setNeighbors(const QVector<Cell*> &neighbors);
 
+signals:
+    void opened(int x, int y);
+
 private:
     Field *m_field;
 

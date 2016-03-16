@@ -46,9 +46,7 @@ void Cell::open()
 
     m_open = true;
 
-    if (!m_field->isGenerated()) {
-        m_field->generate(x(), y());
-    }
+    emit opened(x(), y());
 
     if (minesAround() == 0) {
         for (Cell *cell : getNeighbors()) {

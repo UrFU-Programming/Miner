@@ -25,6 +25,9 @@ public:
 
     Cell *cellAt(int x, int y) const;
 
+protected slots:
+    void onCellOpened(int x, int y);
+
 private:
     QVector<Cell*> m_cells;
 
