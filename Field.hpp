@@ -15,6 +15,8 @@ public:
     bool isGenerated() const;
 
     void setSize(int width, int height);
+
+    int numberOfMines() const { return m_numberOfMines; }
     void setNumberOfMines(int number);
 
     void prepare();
@@ -25,8 +27,12 @@ public:
 
     Cell *cellAt(int x, int y) const;
 
+signals:
+    void numberOfFlagsChanged(int number);
+
 protected slots:
     void onCellOpened(int x, int y);
+    void onCellMarkChanged();
 
 private:
     QVector<Cell*> m_cells;
@@ -35,6 +41,7 @@ private:
     int m_height;
 
     int m_numberOfMines;
+    int m_numberOfFlags;
 
     bool m_generated;
 };

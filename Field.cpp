@@ -22,6 +22,7 @@ void Field::setSize(int width, int height)
         for (int x = 0; x < width; ++x) {
             Cell *cell = new Cell(x, y);
             connect(cell, SIGNAL(opened(int,int)), this, SLOT(onCellOpened(int,int)));
+            connect(cell, SIGNAL(markChanged(Mark)), this, SLOT(onCellMarkChanged()));
             m_cells.append(cell);
         }
     }
@@ -56,6 +57,9 @@ void Field::prepare()
 
         cell->setNeighbors(neighbors);
     }
+
+    m_numberOfFlags = 0;
+    emit numberOfFlagsChanged(m_numberOfFlags);
 }
 
 void Field::generate(int x, int y)
@@ -101,4 +105,15 @@ void Field::onCellOpened(int x, int y)
     if (!isGenerated()) {
         generate(x, y);
     }
+}
+
+void Field::onCellMarkChanged()
+{
+    m_numberOfFlags = 0;
+    for (Cell *cell : m_cells) {
+        if (cell->mark() == Cell::MarkFlagged) {
+            ++m_numberOfFlags;
+        }
+    }
+    emit numberOfFlagsChanged(m_numberOfFlags);
 }
