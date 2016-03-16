@@ -30,9 +30,12 @@ public:
     void toggleMark();
 
     QVector<Cell*> getNeighbors() const;
+    void setNeighbors(const QVector<Cell*> &neighbors);
 
 private:
     Field *m_field;
+
+    QVector<Cell*> m_neighbors;
 
     int m_x;
     int m_y;

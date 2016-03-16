@@ -30,12 +30,29 @@ void Field::setNumberOfMines(int number)
     m_numberOfMines = number;
 }
 
+void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
+{
+    if (cell) {
+        vector->append(cell);
+    }
+}
+
 void Field::prepare()
 {
     m_generated = false;
 
     for (Cell *cell : m_cells) {
         cell->reset();
+
+        QVector<Cell*> neighbors;
+        for (int x = cell->x() - 1; x <= cell->x() + 1; ++x) {
+            maybeAddCell(&neighbors, cellAt(x, cell->y() - 1));
+            maybeAddCell(&neighbors, cellAt(x, cell->y() + 1));
+        }
+        maybeAddCell(&neighbors, cellAt(cell->x() - 1, cell->y()));
+        maybeAddCell(&neighbors, cellAt(cell->x() + 1, cell->y()));
+
+        cell->setNeighbors(neighbors);
     }
 }
 
