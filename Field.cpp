@@ -2,7 +2,8 @@
 
 #include "Cell.hpp"
 
-Field::Field()
+Field::Field() :
+    QObject()
 {
 
 }

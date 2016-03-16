@@ -1,12 +1,14 @@
 #ifndef FIELD_HPP
 #define FIELD_HPP
 
+#include <QObject>
 #include <QVector>
 
 class Cell;
 
-class Field
+class Field : public QObject
 {
+    Q_OBJECT
 public:
     Field();
 
