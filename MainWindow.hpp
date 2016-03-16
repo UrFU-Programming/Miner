@@ -25,6 +25,7 @@ protected:
 
 protected slots:
     void updateSceneScale();
+    void onFieldNumberOfFlagsChanged(int number);
 
 private slots:
     void on_action_NewGame_triggered();
