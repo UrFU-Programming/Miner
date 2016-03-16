@@ -14,7 +14,7 @@ void Cell::reset()
 {
     m_haveMine = false;
     m_open = false;
-    m_mark = 0;
+    m_mark = MarkNothing;
 }
 
 int Cell::minesAround() const
@@ -72,10 +72,16 @@ void Cell::tryToOpenAround()
 
 void Cell::toggleMark()
 {
-    if (m_mark == 2) {
-        m_mark = 0;
-    } else {
-        ++m_mark;
+    switch (m_mark) {
+    case MarkNothing:
+        m_mark = MarkFlagged;
+        break;
+    case MarkFlagged:
+        m_mark = MarkQuestioned;
+        break;
+    case MarkQuestioned:
+        m_mark = MarkNothing;
+        break;
     }
 }
 

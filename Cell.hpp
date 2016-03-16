@@ -8,6 +8,12 @@ class Cell : public QObject
 {
     Q_OBJECT
 public:
+    enum Mark {
+        MarkNothing,
+        MarkFlagged,
+        MarkQuestioned
+    };
+
     Cell(int x, int y);
 
     void reset();
@@ -24,7 +30,7 @@ public:
     void open();
     void tryToOpenAround();
 
-    int mark() const { return m_mark; }
+    Mark mark() const { return m_mark; }
     void toggleMark();
 
     QVector<Cell*> getNeighbors() const;
@@ -42,7 +48,7 @@ private:
     bool m_haveMine;
     bool m_open;
 
-    int m_mark;
+    Mark m_mark;
 
 };
 
