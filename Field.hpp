@@ -42,6 +42,7 @@ private:
 
     int m_numberOfMines;
     int m_numberOfFlags;
+    int m_numberOfOpenCells;
 
     bool m_generated;
 };

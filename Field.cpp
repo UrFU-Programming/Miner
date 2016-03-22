@@ -60,6 +60,8 @@ void Field::prepare()
 
     m_numberOfFlags = 0;
     emit numberOfFlagsChanged(m_numberOfFlags);
+
+    m_numberOfOpenCells = 0;
 }
 
 void Field::generate(int x, int y)
@@ -105,6 +107,8 @@ void Field::onCellOpened(int x, int y)
     if (!isGenerated()) {
         generate(x, y);
     }
+
+    ++m_numberOfOpenCells;
 }
 
 void Field::onCellMarkChanged()
