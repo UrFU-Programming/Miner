@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for (int y = 0; y < m_field->height(); ++y) {
         for (int x = 0; x < m_field->width(); ++x) {
             CellItem *newItem = new CellItem(m_field->cellAt(x, y), m_fieldItem);
-            newItem->setPos(x * CellItem::cellSize, y * CellItem::cellSize);
+            newItem->setPos(x * CellItem::cellSize + fieldBorderWidth, y * CellItem::cellSize + fieldBorderWidth);
         }
     }
 
