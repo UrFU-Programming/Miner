@@ -38,6 +38,7 @@ private:
     QGraphicsScene *m_scene;
     QGraphicsRectItem *m_fieldItem;
     QGraphicsSimpleTextItem *m_gameStateText;
+    QGraphicsRectItem *m_gameStateRect;
     Field *m_field;
 };
 

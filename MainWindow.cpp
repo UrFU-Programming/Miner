@@ -25,7 +25,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QFont font = m_gameStateText->font();
     font.setPixelSize(32);
     m_gameStateText->setFont(font);
+    m_gameStateRect = new QGraphicsRectItem();
+    m_gameStateRect->setZValue(1);
+    m_gameStateRect->setOpacity(0.7);
+    m_gameStateRect->setBrush(Qt::lightGray);
+
     m_scene->addItem(m_gameStateText);
+    m_scene->addItem(m_gameStateRect);
 
     m_field = new Field();
 
@@ -86,11 +92,17 @@ void MainWindow::onFieldStateChanged()
 {
     if (m_field->state() == Field::StateEnded) {
         m_gameStateText->setText("Game over");
-        m_gameStateText->setPos((m_scene->width() - m_gameStateText->boundingRect().width()) / 2,
-                               (m_scene->height() - m_gameStateText->boundingRect().height()) / 2);
+        m_gameStateText->setPos((m_fieldItem->boundingRect().width() - m_gameStateText->boundingRect().width()) / 2,
+                               (m_fieldItem->boundingRect().height() - m_gameStateText->boundingRect().height()) / 2);
+
+        int rectHeight = m_fieldItem->boundingRect().height() * 0.3;
+
+        m_gameStateRect->setRect(0, (m_fieldItem->boundingRect().height() - rectHeight) / 2, m_field->width() * CellItem::cellSize + fieldBorderWidth * 2, rectHeight);
         m_gameStateText->setVisible(true);
+        m_gameStateRect->setVisible(true);
     } else {
         m_gameStateText->setVisible(false);
+        m_gameStateRect->setVisible(false);
     }
 }
 
