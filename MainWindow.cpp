@@ -9,6 +9,8 @@
 #include <QGraphicsScene>
 #include <QTimer>
 
+static const int fieldBorderWidth = CellItem::cellSize / 2;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -16,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_scene = new QGraphicsScene();
+    m_fieldItem = new QGraphicsRectItem();
 
     m_gameStateText = new QGraphicsSimpleTextItem();
     m_gameStateText->setZValue(2);
@@ -39,11 +42,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setViewport(new QGLWidget(f));
     ui->graphicsView->setScene(m_scene);
 
+    m_fieldItem->setRect(0, 0, m_field->width() * CellItem::cellSize + fieldBorderWidth * 2,
+                         m_field->height() * CellItem::cellSize + fieldBorderWidth * 2);
     for (int y = 0; y < m_field->height(); ++y) {
         for (int x = 0; x < m_field->width(); ++x) {
-            m_scene->addItem(new CellItem(m_field->cellAt(x, y)));
+            CellItem *newItem = new CellItem(m_field->cellAt(x, y), m_fieldItem);
+            newItem->setPos(x * CellItem::cellSize, y * CellItem::cellSize);
         }
     }
+
+    m_scene->addItem(m_fieldItem);
 
     newGame();
 }

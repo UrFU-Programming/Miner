@@ -8,6 +8,7 @@ class MainWindow;
 }
 
 class QGraphicsSimpleTextItem;
+class QGraphicsRectItem;
 class QGraphicsScene;
 class Field;
 
@@ -35,6 +36,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;
+    QGraphicsRectItem *m_fieldItem;
     QGraphicsSimpleTextItem *m_gameStateText;
     Field *m_field;
 };
