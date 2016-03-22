@@ -39,9 +39,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_field, SIGNAL(numberOfFlagsChanged(int)), this, SLOT(onFieldNumberOfFlagsChanged(int)));
     connect(m_field, SIGNAL(stateChanged()), this, SLOT(onFieldStateChanged()));
 
-    m_field->setSize(8, 8);
-    m_field->setNumberOfMines(10);
-
     QGLFormat f = QGLFormat::defaultFormat();
     f.setSampleBuffers(false);
     f.setSamples(4);
@@ -49,14 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setViewport(new QGLWidget(f));
     ui->graphicsView->setScene(m_scene);
 
-    m_fieldItem->setRect(0, 0, m_field->width() * CellItem::cellSize + fieldBorderWidth * 2,
-                         m_field->height() * CellItem::cellSize + fieldBorderWidth * 2);
-    for (int y = 0; y < m_field->height(); ++y) {
-        for (int x = 0; x < m_field->width(); ++x) {
-            CellItem *newItem = new CellItem(m_field->cellAt(x, y), m_fieldItem);
-            newItem->setPos(x * CellItem::cellSize + fieldBorderWidth, y * CellItem::cellSize + fieldBorderWidth);
-        }
-    }
+    resizeField(8, 8);
+    m_field->setNumberOfMines(10);
 
     m_scene->addItem(m_fieldItem);
 
@@ -72,6 +63,25 @@ void MainWindow::newGame()
 {
     m_field->prepare();
     m_scene->update();
+}
+
+void MainWindow::resizeField(int width, int height)
+{
+    for (QGraphicsItem *cell : m_fieldItem->childItems()) {
+        delete cell;
+    }
+
+    m_field->setSize(width, height);
+    m_fieldItem->setRect(0, 0,
+                         width * CellItem::cellSize + fieldBorderWidth * 2,
+                         height * CellItem::cellSize + fieldBorderWidth * 2);
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            CellItem *newItem = new CellItem(m_field->cellAt(x, y), m_fieldItem);
+            newItem->setPos(x * CellItem::cellSize + fieldBorderWidth,
+                            y * CellItem::cellSize + fieldBorderWidth);
+        }
+    }
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)

@@ -21,6 +21,7 @@ public:
     ~MainWindow();
 
     void newGame();
+    void resizeField(int width, int height);
 
 protected:
     void resizeEvent(QResizeEvent *event);
