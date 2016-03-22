@@ -34,6 +34,10 @@ protected slots:
 private slots:
     void on_action_NewGame_triggered();
 
+    void on_actionDifficultyNovice_triggered();
+    void on_actionDifficultyIntermediate_triggered();
+    void on_actionDifficultyExpert_triggered();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;

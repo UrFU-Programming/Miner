@@ -121,3 +121,27 @@ void MainWindow::on_action_NewGame_triggered()
 {
     newGame();
 }
+
+void MainWindow::on_actionDifficultyNovice_triggered()
+{
+    resizeField(8, 8);
+    m_field->setNumberOfMines(10);
+    newGame();
+    updateSceneScale();
+}
+
+void MainWindow::on_actionDifficultyIntermediate_triggered()
+{
+    resizeField(16, 16);
+    m_field->setNumberOfMines(40);
+    newGame();
+    updateSceneScale();
+}
+
+void MainWindow::on_actionDifficultyExpert_triggered()
+{
+    resizeField(16, 30);
+    m_field->setNumberOfMines(99);
+    newGame();
+    updateSceneScale();
+}
