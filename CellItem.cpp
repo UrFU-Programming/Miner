@@ -8,8 +8,8 @@
 
 const int CellItem::cellSize = 32;
 
-CellItem::CellItem(Cell *cell) :
-    QGraphicsItem()
+CellItem::CellItem(Cell *cell, QGraphicsItem *parent) :
+    QGraphicsItem(parent)
 {
     m_cell = cell;
     m_text = new QGraphicsSimpleTextItem(this);
