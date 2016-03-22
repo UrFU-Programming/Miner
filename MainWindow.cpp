@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_scene = new QGraphicsScene();
     m_fieldItem = new QGraphicsRectItem();
+    m_fieldItem->setPen(QPen(Qt::black, CellItem::cellSize / 8));
 
     m_gameStateText = new QGraphicsSimpleTextItem();
     m_gameStateText->setZValue(2);
