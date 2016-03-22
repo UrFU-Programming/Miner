@@ -7,6 +7,7 @@ namespace Ui {
 class MainWindow;
 }
 
+class QGraphicsSimpleTextItem;
 class QGraphicsScene;
 class Field;
 
@@ -26,6 +27,7 @@ protected:
 protected slots:
     void updateSceneScale();
     void onFieldNumberOfFlagsChanged(int number);
+    void onFieldStateChanged();
 
 private slots:
     void on_action_NewGame_triggered();
@@ -33,6 +35,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;
+    QGraphicsSimpleTextItem *m_gameStateText;
     Field *m_field;
 };
 

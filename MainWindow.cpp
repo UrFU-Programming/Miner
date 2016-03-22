@@ -16,9 +16,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_scene = new QGraphicsScene();
+
+    m_gameStateText = new QGraphicsSimpleTextItem();
+    m_gameStateText->setZValue(2);
+    QFont font = m_gameStateText->font();
+    font.setPixelSize(32);
+    m_gameStateText->setFont(font);
+    m_scene->addItem(m_gameStateText);
+
     m_field = new Field();
 
     connect(m_field, SIGNAL(numberOfFlagsChanged(int)), this, SLOT(onFieldNumberOfFlagsChanged(int)));
+    connect(m_field, SIGNAL(stateChanged()), this, SLOT(onFieldStateChanged()));
 
     m_field->setSize(8, 8);
     m_field->setNumberOfMines(10);
@@ -63,6 +72,18 @@ void MainWindow::updateSceneScale()
 void MainWindow::onFieldNumberOfFlagsChanged(int number)
 {
     ui->minesLabel->setText(QString("%1/%2").arg(number).arg(m_field->numberOfMines()));
+}
+
+void MainWindow::onFieldStateChanged()
+{
+    if (m_field->state() == Field::StateEnded) {
+        m_gameStateText->setText("Game over");
+        m_gameStateText->setPos((m_scene->width() - m_gameStateText->boundingRect().width()) / 2,
+                               (m_scene->height() - m_gameStateText->boundingRect().height()) / 2);
+        m_gameStateText->setVisible(true);
+    } else {
+        m_gameStateText->setVisible(false);
+    }
 }
 
 void MainWindow::on_action_NewGame_triggered()
