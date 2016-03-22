@@ -5,7 +5,7 @@
 Field::Field() :
     QObject()
 {
-
+    m_state = StateIdle;
 }
 
 bool Field::isGenerated() const
@@ -42,6 +42,7 @@ void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
 
 void Field::prepare()
 {
+    setState(StateIdle);
     m_generated = false;
 
     for (Cell *cell : m_cells) {
@@ -88,6 +89,8 @@ void Field::generate(int x, int y)
         cell->setHaveMine(true);
         --minesToPlace;
     }
+
+    setState(StateStarted);
 }
 
 Cell *Field::cellAt(int x, int y) const
@@ -109,6 +112,12 @@ void Field::onCellOpened(int x, int y)
     }
 
     ++m_numberOfOpenCells;
+
+    if (cellAt(x, y)->haveMine()) {
+        lose();
+    } else if (m_numberOfOpenCells == m_cells.count() - m_numberOfMines) {
+        win();
+    }
 }
 
 void Field::onCellMarkChanged()
@@ -120,4 +129,28 @@ void Field::onCellMarkChanged()
         }
     }
     emit numberOfFlagsChanged(m_numberOfFlags);
+}
+
+void Field::lose()
+{
+    setState(StateEnded);
+
+    for (Cell *cell : m_cells) {
+        cell->open();
+    }
+}
+
+void Field::win()
+{
+    setState(StateEnded);
+}
+
+void Field::setState(Field::State newState)
+{
+    if (m_state == newState) {
+        return;
+    }
+
+    m_state = newState;
+    emit stateChanged();
 }

@@ -10,8 +10,15 @@ class Field : public QObject
 {
     Q_OBJECT
 public:
+    enum State {
+        StateIdle,
+        StateStarted,
+        StateEnded
+    };
+
     Field();
 
+    State state() const { return m_state; }
     bool isGenerated() const;
 
     void setSize(int width, int height);
@@ -29,13 +36,21 @@ public:
 
 signals:
     void numberOfFlagsChanged(int number);
+    void stateChanged();
 
 protected slots:
     void onCellOpened(int x, int y);
     void onCellMarkChanged();
 
 private:
+    void setState(State newState);
+
+    void lose();
+    void win();
+
     QVector<Cell*> m_cells;
+
+    State m_state;
 
     int m_width;
     int m_height;
