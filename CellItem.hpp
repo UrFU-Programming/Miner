@@ -10,6 +10,7 @@ class CellItem : public QGraphicsItem
 {
 public:
     CellItem(Cell *cell);
+    static const int cellSize;
 
     // QGraphicsItem interface
 public:

@@ -6,7 +6,7 @@
 
 #include "Cell.hpp"
 
-const int cellSize = 32;
+const int CellItem::cellSize = 32;
 
 CellItem::CellItem(Cell *cell) :
     QGraphicsItem()
