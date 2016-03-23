@@ -27,7 +27,9 @@ public:
     void setHaveMine(bool haveMine);
 
     bool isOpen() const { return m_open; }
+    bool isExploded() { return m_exploded; }
     void open();
+    void reveal();
     void tryToOpenAround();
 
     Mark mark() const { return m_mark; }
@@ -48,6 +50,7 @@ private:
 
     bool m_haveMine;
     bool m_open;
+    bool m_exploded;
 
     Mark m_mark;
 

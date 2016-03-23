@@ -14,6 +14,7 @@ void Cell::reset()
 {
     m_haveMine = false;
     m_open = false;
+    m_exploded = false;
     m_mark = MarkNothing;
 
     emit markChanged(m_mark);
@@ -44,6 +45,10 @@ void Cell::open()
 
     m_open = true;
 
+    if (haveMine()) {
+        m_exploded = true;
+    }
+
     emit opened(x(), y());
 
     if (minesAround() == 0) {
@@ -51,6 +56,11 @@ void Cell::open()
             cell->open();
         }
     }
+}
+
+void Cell::reveal()
+{
+    m_open = true;
 }
 
 void Cell::tryToOpenAround()
