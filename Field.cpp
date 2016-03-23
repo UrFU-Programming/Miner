@@ -148,6 +148,10 @@ void Field::lose()
 void Field::win()
 {
     setState(StateEnded);
+
+    for (Cell *cell : m_cells) {
+        cell->reveal();
+    }
 }
 
 void Field::setState(Field::State newState)
