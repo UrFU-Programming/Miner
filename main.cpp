@@ -2,6 +2,7 @@
 #include <QApplication>
 
 #include <QQuickView>
+#include <QQmlContext>
 #include <QtQml>
 
 #include "Field.hpp"
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
     w.show();
 
     QQuickView view;
+    view.rootContext()->setContextProperty("field", w.field());
     view.setSource(QUrl("qrc:///main.qml"));
     view.show();
 
