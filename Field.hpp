@@ -34,7 +34,7 @@ public:
     int width() const { return m_width; }
     int height() const { return m_height; }
 
-    Cell *cellAt(int x, int y) const;
+    Q_INVOKABLE Cell *cellAt(int x, int y) const;
 
 signals:
     void numberOfFlagsChanged(int number);
