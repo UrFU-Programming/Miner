@@ -1,6 +1,7 @@
 #include "MainWindow.hpp"
 #include <QApplication>
 
+#include <QQuickView>
 #include <QtQml>
 
 #include "Field.hpp"
@@ -15,6 +16,9 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
+
+    QQuickView view;
+    view.show();
 
     return a.exec();
 }
