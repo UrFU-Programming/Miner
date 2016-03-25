@@ -20,7 +20,7 @@ public:
     };
     Q_ENUM(Mark)
 
-    Cell(int x, int y);
+    Cell(int x = 0, int y = 0);
 
     void reset();
 
