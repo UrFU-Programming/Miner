@@ -7,12 +7,18 @@
 class Cell : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool haveMine READ haveMine NOTIFY haveMineChanged)
+    Q_PROPERTY(bool isOpen READ isOpen NOTIFY isOpenChanged)
+    Q_PROPERTY(bool exploded READ isExploded NOTIFY explodedChanged)
+    Q_PROPERTY(int minesAround READ minesAround NOTIFY minesAroundChanged)
+    Q_PROPERTY(Mark mark READ mark NOTIFY markChanged)
 public:
     enum Mark {
         MarkNothing,
         MarkFlagged,
         MarkQuestioned
     };
+    Q_ENUM(Mark)
 
     Cell(int x, int y);
 
@@ -40,7 +46,11 @@ public:
 
 signals:
     void opened(int x, int y);
+    void isOpenChanged(bool newIsOpen);
     void markChanged(Mark newMark);
+    void haveMineChanged(bool haveMine);
+    void minesAroundChanged(int newCount);
+    void explodedChanged(bool exploded);
 
 private:
     QVector<Cell*> m_neighbors;
