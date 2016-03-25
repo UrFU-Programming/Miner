@@ -20,6 +20,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    Field *field() const { return m_field; }
+
     void newGame();
     void resizeField(int width, int height);
 
