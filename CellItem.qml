@@ -8,4 +8,11 @@ Rectangle {
     border.width: 2
 
     property Cell cell: null
+
+    Rectangle {
+        color: "#c0c0c0"
+        visible: !cell.isOpen
+        anchors.fill: parent
+        anchors.margins: 2
+    }
 }
