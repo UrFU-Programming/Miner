@@ -52,7 +52,19 @@ Rectangle {
     }
 
     MouseArea {
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
         anchors.fill: parent
-        onClicked: cell.open()
+
+        onClicked: {
+            if (mouse.button == Qt.LeftButton) {
+                if (cell.isOpen) {
+                    cell.tryToOpenAround()
+                } else {
+                    cell.open()
+                }
+            } else {
+                cell.toggleMark()
+            }
+        }
     }
 }
