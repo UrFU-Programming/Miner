@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import GameComponents 1.0
 
 Rectangle {
@@ -59,6 +59,13 @@ Rectangle {
             anchors.centerIn: parent
             text: "Game over"
             font.pixelSize:  parent.height * 0.6
+        }
+    }
+
+    focus: true
+    Keys.onPressed: {
+        if (event.matches(StandardKey.New)) {
+            field.startNewGame();
         }
     }
 }
