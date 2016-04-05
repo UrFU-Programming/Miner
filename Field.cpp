@@ -123,6 +123,10 @@ void Field::onCellOpened(int x, int y)
 
     ++m_numberOfOpenCells;
 
+    if (state() != StateStarted) {
+        return;
+    }
+
     if (cellAt(x, y)->haveMine()) {
         lose();
     } else if (m_numberOfOpenCells == m_cells.count() - m_numberOfMines) {
