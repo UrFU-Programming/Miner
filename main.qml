@@ -5,13 +5,23 @@ Rectangle {
     width: 800
     height: 600
 
-    Grid {
-        columns: field.width
-        Repeater {
-            model: field.width * field.height
+    Rectangle {
+        id: board
+        border.width: 4
+        border.color: "black"
+        radius: 10
+        anchors.fill: parent
 
-            CellItem {
-                cell: field.cellAt(index % field.width, index / field.width)
+        Grid {
+            id: fieldItem
+            anchors.centerIn: parent
+            columns: field.width
+            Repeater {
+                model: field.width * field.height
+
+                CellItem {
+                    cell: field.cellAt(index % field.width, index / field.width)
+                }
             }
         }
     }
