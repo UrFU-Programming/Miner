@@ -2,31 +2,36 @@ import QtQuick 2.0
 import GameComponents 1.0
 
 Rectangle {
-    width: 64
-    height: 64
+    id: cellItem
+    width: size
+    height: size
     border.color: "black"
-    border.width: 2
+    border.width: rectMargin > 3 ? 2 : 1
 
     property Cell cell: null
+
+    property int size: 64
+
+    property int rectMargin: (size * 0.14) < 2 ? 2 : size * 0.14
 
     Rectangle {
         color: "#c0c0c0"
         visible: !cell.isOpen
         anchors.fill: parent
-        anchors.margins: 2
+        anchors.margins: rectMargin
     }
 
     Rectangle {
         color: cell.exploded ? "red" : "#00ff00"
         visible: cell.isOpen && cell.haveMine
         anchors.fill: parent
-        anchors.margins: 2
+        anchors.margins: rectMargin
     }
 
     Text {
         anchors.centerIn: parent
         text: symbol()
-        font.pixelSize: 32
+        font.pixelSize: cellItem.size * 0.8
 
         function symbol() {
             if (cell.isOpen) {
