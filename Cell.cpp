@@ -8,6 +8,7 @@ Cell::Cell(int x, int y) :
 
     m_haveMine = false;
     m_open = false;
+    m_exploded = false;
 }
 
 void Cell::reset()
