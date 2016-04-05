@@ -17,6 +17,7 @@ void Cell::reset()
     m_exploded = false;
     m_mark = MarkNothing;
 
+    emit explodedChanged(m_exploded);
     emit isOpenChanged(isOpen());
     emit markChanged(m_mark);
 }
