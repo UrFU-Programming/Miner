@@ -6,6 +6,7 @@ Field::Field() :
     QObject()
 {
     m_state = StateIdle;
+    m_resetInProgress = true;
 }
 
 bool Field::isGenerated() const
@@ -15,6 +16,7 @@ bool Field::isGenerated() const
 
 void Field::setSize(int width, int height)
 {
+    setResetInProgress(true);
     m_width = width;
     emit widthChanged(width);
     m_height = height;
@@ -33,6 +35,7 @@ void Field::setSize(int width, int height)
             m_cells.append(cell);
         }
     }
+    setResetInProgress(false);
 }
 
 void Field::setNumberOfMines(int number)
@@ -164,4 +167,14 @@ void Field::setState(Field::State newState)
 
     m_state = newState;
     emit stateChanged();
+}
+
+void Field::setResetInProgress(bool reset)
+{
+    if (m_resetInProgress == reset) {
+        return;
+    }
+
+    m_resetInProgress = reset;
+    emit resetInProgressChanged(reset);
 }

@@ -12,6 +12,7 @@ class Field : public QObject
     Q_PROPERTY(int width READ width NOTIFY widthChanged)
     Q_PROPERTY(int height READ height NOTIFY heightChanged)
     Q_PROPERTY(State state READ state NOTIFY stateChanged)
+    Q_PROPERTY(bool resetInProgress READ resetInProgress NOTIFY resetInProgressChanged)
 public:
     enum State {
         StateIdle,
@@ -23,6 +24,7 @@ public:
     Field();
 
     State state() const { return m_state; }
+    bool resetInProgress() const { return m_resetInProgress; }
     bool isGenerated() const;
 
     void setSize(int width, int height);
@@ -41,6 +43,7 @@ public:
 signals:
     void numberOfFlagsChanged(int number);
     void stateChanged();
+    void resetInProgressChanged(bool reset);
 
     void widthChanged(int newWidth);
     void heightChanged(int newHeight);
@@ -51,6 +54,7 @@ protected slots:
 
 private:
     void setState(State newState);
+    void setResetInProgress(bool reset);
 
     void lose();
     void win();
@@ -66,6 +70,7 @@ private:
     int m_numberOfFlags;
     int m_numberOfOpenCells;
 
+    bool m_resetInProgress;
     bool m_generated;
 };
 
