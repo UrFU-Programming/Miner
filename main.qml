@@ -2,6 +2,7 @@ import QtQuick 2.0
 import GameComponents 1.0
 
 Rectangle {
+    id: window
     width: 800
     height: 600
 
@@ -12,15 +13,28 @@ Rectangle {
         radius: 10
         anchors.fill: parent
 
-        Grid {
-            id: fieldItem
-            anchors.centerIn: parent
-            columns: field.width
-            Repeater {
-                model: field.width * field.height
+        Item {
+            id: cellContainer
+            anchors.fill: parent
+            anchors.margins: 10
+            property real windowProportion: width / height
+            property real fieldProportion: field.width * 1.0 / field.height
+            property real fixupFactor: windowProportion > fieldProportion ? 1 : windowProportion / fieldProportion
+            property int preferredSize: height / field.height * fixupFactor
 
-                CellItem {
-                    cell: field.cellAt(index % field.width, index / field.width)
+            Grid {
+                id: fieldItem
+                anchors.centerIn: parent
+
+                columns: field.width
+                Repeater {
+                    id: cellRepeater
+                    model: field.width * field.height
+
+                    CellItem {
+                        cell: field.cellAt(index % field.width, index / field.width)
+                        size: cellContainer.preferredSize
+                    }
                 }
             }
         }
