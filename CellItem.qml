@@ -16,6 +16,13 @@ Rectangle {
         anchors.margins: 2
     }
 
+    Rectangle {
+        color: cell.exploded ? "red" : "#00ff00"
+        visible: cell.isOpen && cell.haveMine
+        anchors.fill: parent
+        anchors.margins: 2
+    }
+
     Text {
         anchors.centerIn: parent
         text: symbol()
