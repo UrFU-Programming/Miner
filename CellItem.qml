@@ -60,6 +60,7 @@ Rectangle {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         anchors.fill: parent
 
+        onPressAndHold: cell.toggleMark()
         onClicked: {
             if (mouse.button == Qt.LeftButton) {
                 if (cell.isOpen) {
