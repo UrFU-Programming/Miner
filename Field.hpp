@@ -32,7 +32,6 @@ public:
     int numberOfMines() const { return m_numberOfMines; }
     void setNumberOfMines(int number);
 
-    void prepare();
     void generate(int x, int y);
 
     int width() const { return m_width; }
@@ -47,6 +46,9 @@ signals:
 
     void widthChanged(int newWidth);
     void heightChanged(int newHeight);
+
+public slots:
+    void startNewGame();
 
 protected slots:
     void onCellOpened(int x, int y);

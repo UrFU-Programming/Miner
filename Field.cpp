@@ -50,7 +50,7 @@ void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
     }
 }
 
-void Field::prepare()
+void Field::startNewGame()
 {
     setState(StateIdle);
     m_generated = false;
