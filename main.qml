@@ -29,7 +29,7 @@ Rectangle {
                 columns: field.width
                 Repeater {
                     id: cellRepeater
-                    model: field.width * field.height
+                    model: field.resetInProgress ? 0 : field.width * field.height
 
                     CellItem {
                         cell: field.cellAt(index % field.width, index / field.width)
