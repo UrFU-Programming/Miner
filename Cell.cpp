@@ -21,6 +21,7 @@ void Cell::reset()
     emit explodedChanged(m_exploded);
     emit isOpenChanged(isOpen());
     emit markChanged(m_mark);
+    emit haveMineChanged(m_haveMine);
 }
 
 int Cell::minesAround() const
