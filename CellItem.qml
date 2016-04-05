@@ -16,6 +16,34 @@ Rectangle {
         anchors.margins: 2
     }
 
+    Text {
+        anchors.centerIn: parent
+        text: symbol()
+        font.pixelSize: 32
+
+        function symbol() {
+            if (cell.isOpen) {
+                if (cell.haveMine) {
+                    return "+"
+                }
+                if (cell.minesAround > 0) {
+                    return cell.minesAround
+                }
+            } else {
+                switch (cell.mark) {
+                case Cell.MarkNothing:
+                    break;
+                case Cell.MarkFlagged:
+                    return "!"
+                case Cell.MarkQuestioned:
+                    return "?"
+                }
+            }
+
+            return ""
+        }
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: cell.open()
