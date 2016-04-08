@@ -29,7 +29,7 @@ void Field::generate(int x, int y)
     qsrand(10);
 
     Cell *banned = cellAt(x, y);
-    QVector<Cell*> bannedCells;
+    QVector<Cell*> bannedCells = banned->getNeighbors();
     bannedCells.append(banned);
 
     int minesToPlace = m_numberOfMines;
