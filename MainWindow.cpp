@@ -37,7 +37,6 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::newGame()
 {
     m_field->prepare();
-    m_field->generate();
     m_scene->update();
 }
 

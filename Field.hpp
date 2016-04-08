@@ -15,7 +15,7 @@ public:
 
     void generate();
     void prepare();
-    bool isGenerated() const {return m_generated;}
+    bool isGenerated() const { return m_generated; }
 
     int width() const { return m_width; }
     int height() const { return m_height; }

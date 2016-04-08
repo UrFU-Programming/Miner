@@ -32,6 +32,10 @@ void Cell::setHaveMine(bool haveMine)
 
 void Cell::open()
 {
+    if (m_field->isGenerated() == false) {
+        m_field->generate();
+    }
+
     if (m_open) {
         return;
     }
