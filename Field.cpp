@@ -24,16 +24,20 @@ void Field::setNumberOfMines(int number)
     m_numberOfMines = number;
 }
 
-void Field::generate()
+void Field::generate(int x, int y)
 {
     qsrand(10);
+
+    Cell *banned = cellAt(x, y);
+    QVector<Cell*> bannedCells;
+    bannedCells.append(banned);
 
     int minesToPlace = m_numberOfMines;
 
     while (minesToPlace > 0) {
         Cell *cell = m_cells.at(qrand() % m_cells.count());
 
-        if (cell->haveMine()) {
+        if (cell->haveMine() || bannedCells.contains(cell)) {
             continue;
         }
 

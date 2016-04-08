@@ -13,7 +13,7 @@ public:
     void setSize(int width, int height);
     void setNumberOfMines(int number);
 
-    void generate();
+    void generate(int x, int y);
     void prepare();
     bool isGenerated() const { return m_generated; }
 

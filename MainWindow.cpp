@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     newGame();
 
-    m_field->generate();
+    m_field->generate(x(), y());
 }
 
 void MainWindow::newGame()
