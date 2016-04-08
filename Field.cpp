@@ -57,6 +57,13 @@ void Field::prepare()
     }
 }
 
+void Field::lose()
+{
+    for (int i = 0; i < m_cells.size(); i++) {
+        m_cells[i]->open();
+    }
+}
+
 Cell *Field::cellAt(int x, int y) const
 {
     if (x < 0 || x >= m_width) {

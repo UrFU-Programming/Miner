@@ -47,6 +47,10 @@ void Cell::open()
             cell->open();
         }
     }
+
+    if (haveMine()) {
+        m_field->lose();
+    }
 }
 
 void Cell::reset()

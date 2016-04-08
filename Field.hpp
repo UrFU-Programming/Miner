@@ -15,6 +15,7 @@ public:
 
     void generate(int x, int y);
     void prepare();
+    void lose();
     bool isGenerated() const { return m_generated; }
 
     int width() const { return m_width; }
