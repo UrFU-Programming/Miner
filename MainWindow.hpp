@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void newGame();
     ~MainWindow();
 
 protected:
@@ -23,6 +24,9 @@ protected:
 
 protected slots:
     void updateSceneScale();
+
+private slots:
+    void on_actionNewGame_triggered();
 
 private:
     Ui::MainWindow *ui;

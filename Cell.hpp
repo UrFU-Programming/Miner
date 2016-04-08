@@ -20,6 +20,7 @@ public:
 
     bool isOpen() const { return m_open; }
     void open();
+    void reset();
 
     QVector<Cell*> getNeighbors() const;
 

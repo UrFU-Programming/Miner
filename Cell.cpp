@@ -45,6 +45,12 @@ void Cell::open()
     }
 }
 
+void Cell::reset()
+{
+    m_haveMine = false;
+    m_open = false;
+}
+
 void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
 {
     if (cell) {
