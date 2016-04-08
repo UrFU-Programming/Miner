@@ -28,6 +28,8 @@ protected slots:
 private slots:
     void on_actionNewGame_triggered();
 
+    void on_actionExit_triggered();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;

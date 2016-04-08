@@ -59,3 +59,8 @@ void MainWindow::on_actionNewGame_triggered()
 {
     newGame();
 }
+
+void MainWindow::on_actionExit_triggered()
+{
+    close();
+}
