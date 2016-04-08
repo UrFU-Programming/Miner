@@ -20,8 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
     m_field->setSize(8, 8);
     m_field->setNumberOfMines(10);
 
+    QGLFormat f = QGLFormat::defaultFormat();
+    f.setSampleBuffers(true);
+    f.setSamples(4);
+
+    ui->graphicsView->setViewport(new QGLWidget(f));
     ui->graphicsView->setScene(m_scene);
-    ui->graphicsView->setViewport(new QGLWidget());
 
     for (int y = 0; y < m_field->height(); ++y) {
         for (int x = 0; x < m_field->width(); ++x) {
