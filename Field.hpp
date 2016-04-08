@@ -15,6 +15,7 @@ public:
 
     void generate();
     void prepare();
+    bool isGenerated() const {return m_generated;}
 
     int width() const { return m_width; }
     int height() const { return m_height; }
@@ -26,6 +27,7 @@ private:
 
     int m_width;
     int m_height;
+    bool m_generated;
 
     int m_numberOfMines;
 };
