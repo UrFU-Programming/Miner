@@ -65,7 +65,11 @@ void CellItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void CellItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        m_cell->open();
+        if (m_cell->isOpen()) {
+            m_cell->tryToOpenAround();
+        } else {
+            m_cell->open();
+        }
     }
 
     if (event->button() == Qt::RightButton) {

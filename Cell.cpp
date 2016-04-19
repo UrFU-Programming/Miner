@@ -70,6 +70,25 @@ void Cell::toggleMark()
     }
 }
 
+void Cell::tryToOpenAround()
+{
+    int mark;
+
+    for (Cell *cell : getNeighbors()) {
+        if (cell->mark() == 1) {
+            ++mark;
+        }
+    }
+
+    if (mark == minesAround()){
+        for (Cell *cell : getNeighbors()) {
+            if (cell->mark() == 0){
+                cell->open();
+            }
+        }
+    }
+}
+
 void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
 {
     if (cell) {

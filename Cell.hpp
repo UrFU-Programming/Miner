@@ -23,6 +23,7 @@ public:
     void open();
     void reset();
     void toggleMark();
+    void tryToOpenAround();
 
     QVector<Cell*> getNeighbors() const;
 
