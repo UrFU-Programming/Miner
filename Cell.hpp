@@ -2,11 +2,13 @@
 #define CELL_HPP
 
 #include <QVector>
+#include <QObject>
 
 class Field;
 
-class Cell
+class Cell : public QObject
 {
+    Q_OBJECT
 public:
     Cell(Field *field, int x, int y);
 
