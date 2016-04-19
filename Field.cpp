@@ -101,4 +101,8 @@ void Field::onCellOpened(int x, int y)
     if (!isGenerated()) {
         generate(x, y);
     }
+
+    if (cellAt(x, y)->haveMine()){
+        lose();
+    }
 }

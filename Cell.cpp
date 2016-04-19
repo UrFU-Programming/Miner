@@ -34,22 +34,18 @@ void Cell::setHaveMine(bool haveMine)
 
 void Cell::open()
 {
-    emit opened(x(), y());
-
     if (m_open) {
         return;
     }
 
     m_open = true;
 
+    emit opened(x(), y());
+
     if (minesAround() == 0) {
         for (Cell *cell : getNeighbors()) {
             cell->open();
         }
-    }
-
-    if (haveMine()) {
-        m_field->lose();
     }
 }
 
