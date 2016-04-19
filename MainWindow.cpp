@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     newGame();
 
+    connect(m_field, SIGNAL(numberOfFlagsChanged(int)), this, SLOT(onFieldNumberOfFlagsChanged(int)));
+
     m_field->generate(x(), y());
 }
 
@@ -57,6 +59,11 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 void MainWindow::updateSceneScale()
 {
     ui->graphicsView->fitInView(m_scene->sceneRect(), Qt::KeepAspectRatio);
+}
+
+void MainWindow::onFieldNumberOfFlagsChanged(int number)
+{
+    ui->minesLabel->setText(QString("%1/%2").arg(number).arg(m_field->numberOfMines()));
 }
 
 void MainWindow::on_actionNewGame_triggered()

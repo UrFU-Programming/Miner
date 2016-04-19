@@ -17,6 +17,7 @@ void Field::setSize(int width, int height)
         for (int x = 0; x < width; ++x) {
             Cell *cell = new Cell(x, y);
             connect(cell, SIGNAL(opened(int,int)), this, SLOT(onCellOpened(int,int)));
+            connect(cell, SIGNAL(markChanged(Mark)), this, SLOT(onCellMarkChanged()));
             m_cells.append(cell);
         }
     }
@@ -105,4 +106,16 @@ void Field::onCellOpened(int x, int y)
     if (cellAt(x, y)->haveMine()){
         lose();
     }
+}
+
+void Field::onCellMarkChanged()
+{
+    int mark = 0;
+    for (int i = 0; i < m_cells.size(); i++) {
+        if(m_cells[i]->mark() == Cell::MarkFlagged) {
+            mark++;
+        }
+    }
+    m_numberOfFlags = mark;
+    emit numberOfFlagsChanged(numberOfFlags());
 }

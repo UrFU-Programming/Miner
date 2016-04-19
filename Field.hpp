@@ -22,11 +22,17 @@ public:
 
     int width() const { return m_width; }
     int height() const { return m_height; }
+    int numberOfMines() const { return m_numberOfMines; }
+    int numberOfFlags() const { return m_numberOfFlags; }
 
     Cell *cellAt(int x, int y) const;
 
 protected slots:
     void onCellOpened(int x, int y);
+    void onCellMarkChanged();
+
+signals:
+    void numberOfFlagsChanged(int numberOfFlags);
 
 private:
     QVector<Cell*> m_cells;
@@ -36,6 +42,7 @@ private:
     bool m_generated;
 
     int m_numberOfMines;
+    int m_numberOfFlags;
 };
 
 #endif // FIELD_HPP
