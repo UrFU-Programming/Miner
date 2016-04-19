@@ -15,7 +15,9 @@ void Field::setSize(int width, int height)
 
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            m_cells.append(new Cell(this, x, y));
+            Cell *cell = new Cell(this, x, y);
+            connect(cell, SIGNAL(opened(int,int)), this, SLOT(onCellOpened(int,int)));
+            m_cells.append(cell);
         }
     }
 }
@@ -92,4 +94,11 @@ Cell *Field::cellAt(int x, int y) const
     }
 
     return m_cells.at(x + y * m_width);
+}
+
+void Field::onCellOpened(int x, int y)
+{
+    if (!isGenerated()) {
+        generate(x, y);
+    }
 }
