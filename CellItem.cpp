@@ -43,15 +43,16 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
         }
     } else {
         painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2,Qt::lightGray);
-        if (m_cell->mark() != 0) {
-            if (m_cell->mark() == 1) {
-                m_text->setText("!");
-            }
-            if (m_cell->mark() == 2) {
-                m_text->setText("?");
-            }
-        } else {
+        switch (m_cell->mark()) {
+        case Cell::MarkNothing:
             m_text->setText("");
+            break;
+        case Cell::MarkFlagged:
+            m_text->setText("!");
+            break;
+        case Cell::MarkQuestioned:
+            m_text->setText("?");
+            break;
         }
     }
     m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
