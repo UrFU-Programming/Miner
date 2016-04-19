@@ -4,13 +4,11 @@
 #include <QVector>
 #include <QObject>
 
-class Field;
-
 class Cell : public QObject
 {
     Q_OBJECT
 public:
-    Cell(Field *field, int x, int y);
+    Cell(int x, int y);
 
     int x() const { return m_x; }
     int y() const { return m_y; }
@@ -34,8 +32,6 @@ signals:
     void opened(int x, int y);
 
 private:
-    Field *m_field;
-
     int m_x;
     int m_y;
     int m_mark;
