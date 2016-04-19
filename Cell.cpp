@@ -90,22 +90,12 @@ void Cell::tryToOpenAround()
     }
 }
 
-void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
+void Cell::setNeighbors(const QVector<Cell *> &neighbors)
 {
-    if (cell) {
-        vector->append(cell);
-    }
+    m_neighbors = neighbors;
 }
 
 QVector<Cell *> Cell::getNeighbors() const
 {
-    QVector<Cell*> neighbors;
-    for (int x = m_x - 1; x <= m_x + 1; ++x) {
-        maybeAddCell(&neighbors, m_field->cellAt(x, m_y - 1));
-        maybeAddCell(&neighbors, m_field->cellAt(x, m_y + 1));
-    }
-    maybeAddCell(&neighbors, m_field->cellAt(m_x - 1, m_y));
-    maybeAddCell(&neighbors, m_field->cellAt(m_x + 1, m_y));
-
-    return neighbors;
+    return m_neighbors;
 }

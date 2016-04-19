@@ -26,6 +26,7 @@ public:
     void reset();
     void toggleMark();
     void tryToOpenAround();
+    void setNeighbors(const QVector<Cell*> &neighbors);
 
     QVector<Cell*> getNeighbors() const;
 
@@ -38,6 +39,8 @@ private:
 
     bool m_haveMine;
     bool m_open;
+
+    QVector <Cell*> m_neighbors;
 
 };
 

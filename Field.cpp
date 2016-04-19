@@ -49,12 +49,29 @@ void Field::generate(int x, int y)
     m_generated = true;
 }
 
+void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
+{
+    if (cell) {
+        vector->append(cell);
+    }
+}
+
 void Field::prepare()
 {
     m_generated = false;
 
     for (int i = 0; i < m_cells.size();i++) {
         m_cells[i]->reset();
+
+        QVector<Cell*> neighbors;
+        for (int x = m_cells[i]->x() - 1; x <= m_cells[i]->x() + 1; ++x) {
+            maybeAddCell(&neighbors, cellAt(x, m_cells[i]->y() - 1));
+            maybeAddCell(&neighbors, cellAt(x, m_cells[i]->y() + 1));
+        }
+        maybeAddCell(&neighbors, cellAt(m_cells[i]->x() - 1, m_cells[i]->y()));
+        maybeAddCell(&neighbors, cellAt(m_cells[i]->x() + 1, m_cells[i]->y()));
+
+        m_cells[i]->setNeighbors(neighbors);
     }
 }
 
