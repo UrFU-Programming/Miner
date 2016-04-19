@@ -36,6 +36,7 @@ public:
 
 signals:
     void opened(int x, int y);
+    void markChanged(Mark newMark);
 
 private:
     int m_x;

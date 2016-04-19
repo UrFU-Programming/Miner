@@ -50,6 +50,7 @@ void Cell::reset()
     m_haveMine = false;
     m_open = false;
     m_mark = MarkNothing;
+    emit markChanged(m_mark);
 }
 
 void Cell::toggleMark()
@@ -57,12 +58,15 @@ void Cell::toggleMark()
     switch (m_mark) {
     case MarkNothing:
         m_mark = MarkFlagged;
+        emit markChanged(m_mark);
         break;
     case MarkFlagged:
         m_mark = MarkQuestioned;
+        emit markChanged(m_mark);
         break;
     case MarkQuestioned:
         m_mark = MarkNothing;
+        emit markChanged(m_mark);
         break;
     }
 }
