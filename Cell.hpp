@@ -12,6 +12,7 @@ public:
 
     int x() const { return m_x; }
     int y() const { return m_y; }
+    int mark() const { return m_mark; }
 
     int minesAround() const;
 
@@ -21,6 +22,7 @@ public:
     bool isOpen() const { return m_open; }
     void open();
     void reset();
+    void toggleMark();
 
     QVector<Cell*> getNeighbors() const;
 
@@ -29,6 +31,7 @@ private:
 
     int m_x;
     int m_y;
+    int m_mark;
 
     bool m_haveMine;
     bool m_open;

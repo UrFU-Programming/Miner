@@ -11,6 +11,7 @@ Cell::Cell(Field *field, int x, int y)
 
     m_haveMine = false;
     m_open = false;
+    m_mark = 0;
 }
 
 int Cell::minesAround() const
@@ -57,6 +58,16 @@ void Cell::reset()
 {
     m_haveMine = false;
     m_open = false;
+    m_mark = 0;
+}
+
+void Cell::toggleMark()
+{
+    if (m_mark == 2) {
+        m_mark = 0;
+    } else {
+        ++m_mark;
+    }
 }
 
 void maybeAddCell(QVector<Cell*> *vector, Cell *cell)

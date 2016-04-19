@@ -43,7 +43,16 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
         }
     } else {
         painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2,Qt::lightGray);
-        m_text->setText("");
+        if (m_cell->mark() != 0) {
+            if (m_cell->mark() == 1) {
+                m_text->setText("!");
+            }
+            if (m_cell->mark() == 2) {
+                m_text->setText("?");
+            }
+        } else {
+            m_text->setText("");
+        }
     }
     m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
 }
@@ -57,6 +66,10 @@ void CellItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         m_cell->open();
+    }
+
+    if (event->button() == Qt::RightButton) {
+        m_cell->toggleMark();
     }
 
     update();
