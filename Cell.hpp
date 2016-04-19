@@ -8,11 +8,17 @@ class Cell : public QObject
 {
     Q_OBJECT
 public:
+    enum Mark {
+        MarkNothing,
+        MarkFlagged,
+        MarkQuestioned
+    };
+
     Cell(int x, int y);
 
     int x() const { return m_x; }
     int y() const { return m_y; }
-    int mark() const { return m_mark; }
+    Mark mark() const { return m_mark; }
 
     int minesAround() const;
 
@@ -34,7 +40,7 @@ signals:
 private:
     int m_x;
     int m_y;
-    int m_mark;
+    Mark m_mark;
 
     bool m_haveMine;
     bool m_open;
