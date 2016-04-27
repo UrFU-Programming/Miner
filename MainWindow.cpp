@@ -23,6 +23,14 @@ MainWindow::MainWindow(QWidget *parent) :
     m_gameStateText->setFont(s);
     m_gameStateText->setZValue(2);
 
+    m_gameStateRect = new QGraphicsRectItem();
+    m_gameStateRect->setZValue(1);
+    m_gameStateRect->setOpacity(0.7);
+    QLinearGradient gradient(0, 0, 200, m_gameStateRect->rect().height());
+    gradient.setColorAt(0, QColor(0, 100, 0));
+    gradient.setColorAt(1, QColor(200, 0, 150));
+    m_gameStateRect->setBrush(gradient);
+
     m_scene = new QGraphicsScene();
     m_field = new Field();
     m_fieldItem = new QGraphicsRectItem();
@@ -38,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_fieldItem->setRect(0, 0, m_field->width() * CellItem::cellSize + fieldBorderWidth * 2, m_field->height() * CellItem::cellSize + fieldBorderWidth * 2);
 
+    m_scene->addItem(m_gameStateRect);
     m_scene->addItem(m_gameStateText);
 
     for (int y = 0; y < m_field->height(); ++y) {
@@ -98,8 +107,14 @@ void MainWindow::onFieldStateChanged()
         m_gameStateText->setText("Game over");
         m_gameStateText->setPos((m_scene->width() - m_gameStateText->boundingRect().width()) / 2,
                                 (m_scene->height() - m_gameStateText->boundingRect().height()) / 2);
+
+        int rectHeight = m_fieldItem->boundingRect().height() * 0.3;
+
+        m_gameStateRect->setRect(0, (m_fieldItem->boundingRect().height() - rectHeight) / 2, m_field->width() * CellItem::cellSize + fieldBorderWidth * 2, rectHeight);
         m_gameStateText->setVisible(true);
+        m_gameStateRect->setVisible(true);
     } else {
         m_gameStateText->setVisible(false);
+        m_gameStateRect->setVisible(false);
     }
 }
