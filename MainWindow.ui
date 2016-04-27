@@ -53,7 +53,16 @@
     <property name="title">
      <string>Game</string>
     </property>
+    <widget class="QMenu" name="menuDifficulty">
+     <property name="title">
+      <string>Difficulty</string>
+     </property>
+     <addaction name="actionBeginner"/>
+     <addaction name="actionIntermediate"/>
+     <addaction name="actionExpert"/>
+    </widget>
     <addaction name="actionNewGame"/>
+    <addaction name="menuDifficulty"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuGame"/>
@@ -81,6 +90,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionBeginner">
+   <property name="text">
+    <string>Beginner</string>
+   </property>
+  </action>
+  <action name="actionIntermediate">
+   <property name="text">
+    <string>Intermediate</string>
+   </property>
+  </action>
+  <action name="actionExpert">
+   <property name="text">
+    <string>Expert</string>
    </property>
   </action>
  </widget>

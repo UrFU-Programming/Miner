@@ -130,3 +130,27 @@ void MainWindow::onFieldStateChanged()
         m_gameStateRect->setVisible(false);
     }
 }
+
+void MainWindow::on_actionBeginner_triggered()
+{
+    resizeField(8, 8);
+    m_field->setNumberOfMines(10);
+    newGame();
+    updateSceneScale();
+}
+
+void MainWindow::on_actionIntermediate_triggered()
+{
+    resizeField(16, 16);
+    m_field->setNumberOfMines(40);
+    newGame();
+    updateSceneScale();
+}
+
+void MainWindow::on_actionExpert_triggered()
+{
+    resizeField(16, 30);
+    m_field->setNumberOfMines(99);
+    newGame();
+    updateSceneScale();
+}

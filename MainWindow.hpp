@@ -34,6 +34,12 @@ private slots:
     void on_actionExit_triggered();
     void onFieldStateChanged();
 
+    void on_actionBeginner_triggered();
+
+    void on_actionIntermediate_triggered();
+
+    void on_actionExpert_triggered();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;
