@@ -62,6 +62,7 @@ void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
 void Field::prepare()
 {
     m_generated = false;
+    m_numberOfOpenedCells = 0;
 
     for (int i = 0; i < m_cells.size();i++) {
         m_cells[i]->reset();
@@ -106,6 +107,8 @@ void Field::onCellOpened(int x, int y)
     if (cellAt(x, y)->haveMine()){
         lose();
     }
+
+    m_numberOfOpenedCells++;
 }
 
 void Field::onCellMarkChanged()
