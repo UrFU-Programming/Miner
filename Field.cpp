@@ -6,7 +6,7 @@
 Field::Field():
     QObject()
 {
-
+    m_state = StateIdle;
 }
 
 void Field::setSize(int width, int height)
@@ -51,6 +51,7 @@ void Field::generate(int x, int y)
     }
 
     m_generated = true;
+    setState(StateStarted);
 }
 
 void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
@@ -64,6 +65,7 @@ void Field::prepare()
 {
     m_generated = false;
     m_numberOfOpenedCells = 0;
+    setState(StateIdle);
 
     for (int i = 0; i < m_cells.size();i++) {
         m_cells[i]->reset();
@@ -85,6 +87,7 @@ void Field::lose()
     for (int i = 0; i < m_cells.size(); i++) {
         m_cells[i]->open();
     }
+    setState(StateEnded);
 }
 
 Cell *Field::cellAt(int x, int y) const
@@ -131,4 +134,15 @@ void Field::onCellMarkChanged()
 void Field::win()
 {
     qDebug() << "Win!";
+    setState(StateEnded);
+}
+
+void Field::setState(Field::State newState)
+{
+    if (m_state == newState) {
+        return;
+    }
+
+    m_state = newState;
+    emit stateChanged(state());
 }

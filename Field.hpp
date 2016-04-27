@@ -10,6 +10,12 @@ class Field : public QObject
 {
     Q_OBJECT
 public:
+    enum State {
+        StateIdle,
+        StateStarted,
+        StateEnded
+    };
+
     Field();
 
     void setSize(int width, int height);
@@ -24,6 +30,7 @@ public:
     int height() const { return m_height; }
     int numberOfMines() const { return m_numberOfMines; }
     int numberOfFlags() const { return m_numberOfFlags; }
+    State state() const { return m_state; }
 
     Cell *cellAt(int x, int y) const;
 
@@ -33,6 +40,7 @@ protected slots:
 
 signals:
     void numberOfFlagsChanged(int numberOfFlags);
+    void stateChanged(State newState);
 
 private:
     QVector<Cell*> m_cells;
@@ -44,8 +52,10 @@ private:
     int m_numberOfMines;
     int m_numberOfFlags;
     int m_numberOfOpenedCells;
+    State m_state;
 
     void win();
+    void setState(State newState);
 };
 
 #endif // FIELD_HPP
