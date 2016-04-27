@@ -9,6 +9,7 @@ class MainWindow;
 
 class QGraphicsScene;
 class Field;
+class QGraphicsSimpleTextItem;
 
 class MainWindow : public QMainWindow
 {
@@ -28,12 +29,13 @@ protected slots:
 
 private slots:
     void on_actionNewGame_triggered();
-
     void on_actionExit_triggered();
+    void onFieldStateChanged();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;
+    QGraphicsSimpleTextItem *m_gameStateText;
     Field *m_field;
 };
 

@@ -15,6 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    m_gameStateText = new QGraphicsSimpleTextItem();
+    QFont s = m_gameStateText->font();
+    s.setPixelSize(32);
+    m_gameStateText->setFont(s);
+    m_gameStateText->setZValue(2);
+
     m_scene = new QGraphicsScene();
     m_field = new Field();
     m_field->setSize(8, 8);
@@ -27,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setViewport(new QGLWidget(f));
     ui->graphicsView->setScene(m_scene);
 
+    m_scene->addItem(m_gameStateText);
+
     for (int y = 0; y < m_field->height(); ++y) {
         for (int x = 0; x < m_field->width(); ++x) {
             m_scene->addItem(new CellItem(m_field->cellAt(x, y)));
@@ -36,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     newGame();
 
     connect(m_field, SIGNAL(numberOfFlagsChanged(int)), this, SLOT(onFieldNumberOfFlagsChanged(int)));
+    connect(m_field, SIGNAL(stateChanged(State)), this, SLOT(onFieldStateChanged()));
 
     m_field->generate(x(), y());
 }
@@ -74,4 +83,16 @@ void MainWindow::on_actionNewGame_triggered()
 void MainWindow::on_actionExit_triggered()
 {
     close();
+}
+
+void MainWindow::onFieldStateChanged()
+{
+    if (m_field->state() == Field::StateEnded) {
+        m_gameStateText->setText("Game over");
+        m_gameStateText->setPos((m_scene->width() - m_gameStateText->boundingRect().width()) / 2,
+                                (m_scene->height() - m_gameStateText->boundingRect().height()) / 2);
+        m_gameStateText->setVisible(true);
+    } else {
+        m_gameStateText->setVisible(false);
+    }
 }
