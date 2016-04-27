@@ -54,8 +54,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_field, SIGNAL(numberOfFlagsChanged(int)), this, SLOT(onFieldNumberOfFlagsChanged(int)));
     connect(m_field, SIGNAL(stateChanged(State)), this, SLOT(onFieldStateChanged()));
-
-    m_field->generate(x(), y());
 }
 
 void MainWindow::newGame()

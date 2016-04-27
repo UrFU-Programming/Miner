@@ -24,6 +24,7 @@ public:
 
     bool haveMine() const { return m_haveMine; }
     bool isOpen() const { return m_open; }
+    bool isExploded() const { return m_exploded; }
 
     void setHaveMine(bool haveMine);
     void open();

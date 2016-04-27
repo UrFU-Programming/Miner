@@ -139,6 +139,9 @@ void Field::onCellMarkChanged()
 void Field::win()
 {
     qDebug() << "Win!";
+    for (int i = 0; i < m_cells.size(); i++) {
+        m_cells[i]->reveal();
+    }
     setState(StateEnded);
 }
 
