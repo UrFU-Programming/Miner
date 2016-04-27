@@ -1,6 +1,7 @@
 #include "Field.hpp"
-
 #include "Cell.hpp"
+
+#include <QDebug>
 
 Field::Field():
     QObject()
@@ -100,6 +101,8 @@ Cell *Field::cellAt(int x, int y) const
 
 void Field::onCellOpened(int x, int y)
 {
+    m_numberOfOpenedCells++;
+
     if (!isGenerated()) {
         generate(x, y);
     }
@@ -108,7 +111,9 @@ void Field::onCellOpened(int x, int y)
         lose();
     }
 
-    m_numberOfOpenedCells++;
+    if (m_numberOfOpenedCells == m_cells.count() - m_numberOfMines) {
+        win();
+    }
 }
 
 void Field::onCellMarkChanged()
@@ -121,4 +126,9 @@ void Field::onCellMarkChanged()
     }
     m_numberOfFlags = mark;
     emit numberOfFlagsChanged(numberOfFlags());
+}
+
+void Field::win()
+{
+    qDebug() << "Win!";
 }

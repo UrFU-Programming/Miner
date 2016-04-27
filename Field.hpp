@@ -44,6 +44,8 @@ private:
     int m_numberOfMines;
     int m_numberOfFlags;
     int m_numberOfOpenedCells;
+
+    void win();
 };
 
 #endif // FIELD_HPP
