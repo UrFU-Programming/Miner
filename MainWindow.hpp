@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsRectItem>
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,7 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;
     QGraphicsSimpleTextItem *m_gameStateText;
+    QGraphicsRectItem *m_fieldItem;
     Field *m_field;
 };
 
