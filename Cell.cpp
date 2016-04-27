@@ -43,6 +43,10 @@ void Cell::open()
             cell->open();
         }
     }
+
+    if (haveMine() == true) {
+        m_exploded = true;
+    }
 }
 
 void Cell::reset()
@@ -93,6 +97,11 @@ void Cell::tryToOpenAround()
 void Cell::setNeighbors(const QVector<Cell *> &neighbors)
 {
     m_neighbors = neighbors;
+}
+
+void Cell::reveal()
+{
+    m_open = true;
 }
 
 QVector<Cell *> Cell::getNeighbors() const

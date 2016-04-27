@@ -23,14 +23,15 @@ public:
     int minesAround() const;
 
     bool haveMine() const { return m_haveMine; }
-    void setHaveMine(bool haveMine);
-
     bool isOpen() const { return m_open; }
+
+    void setHaveMine(bool haveMine);
     void open();
     void reset();
     void toggleMark();
     void tryToOpenAround();
     void setNeighbors(const QVector<Cell*> &neighbors);
+    void reveal();
 
     QVector<Cell*> getNeighbors() const;
 
@@ -45,6 +46,7 @@ private:
 
     bool m_haveMine;
     bool m_open;
+    bool m_exploded;
 
     QVector <Cell*> m_neighbors;
 
