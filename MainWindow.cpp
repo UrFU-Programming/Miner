@@ -91,6 +91,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 void MainWindow::updateSceneScale()
 {
+    m_scene->setSceneRect(m_scene->itemsBoundingRect());
     ui->graphicsView->fitInView(m_scene->sceneRect(), Qt::KeepAspectRatio);
 }
 
