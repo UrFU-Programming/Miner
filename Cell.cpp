@@ -26,6 +26,7 @@ int Cell::minesAround() const
 void Cell::setHaveMine(bool haveMine)
 {
     m_haveMine = haveMine;
+    emit haveMineChanged(haveMine);
 }
 
 void Cell::open()
@@ -37,6 +38,7 @@ void Cell::open()
     m_open = true;
 
     emit opened(x(), y());
+    emit isOpenChanged(isOpen());
 
     if (minesAround() == 0) {
         for (Cell *cell : getNeighbors()) {
@@ -44,8 +46,11 @@ void Cell::open()
         }
     }
 
+    emit minesAroundChanged(minesAround());
+
     if (haveMine() == true) {
         m_exploded = true;
+        emit isExplodedChanged(isExploded());
     }
 }
 
@@ -53,7 +58,12 @@ void Cell::reset()
 {
     m_haveMine = false;
     m_open = false;
+    m_exploded = false;
     m_mark = MarkNothing;
+
+    emit isOpenChanged(isOpen());
+    emit minesAroundChanged(minesAround());
+    emit isExplodedChanged(isExploded());
     emit markChanged(m_mark);
 }
 
@@ -102,6 +112,8 @@ void Cell::setNeighbors(const QVector<Cell *> &neighbors)
 void Cell::reveal()
 {
     m_open = true;
+
+    emit isOpenChanged(isOpen());
 }
 
 QVector<Cell *> Cell::getNeighbors() const
