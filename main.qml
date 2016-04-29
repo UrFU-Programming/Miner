@@ -10,11 +10,7 @@ Rectangle {
         Repeater {
             model: field.width * field.height
 
-            Rectangle {
-                width: 64
-                height: 64
-                border.color: "black"
-                border.width: 2
+            CellItem {
             }
         }
     }
