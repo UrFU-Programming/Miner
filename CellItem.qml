@@ -15,4 +15,9 @@ Rectangle {
         anchors.fill: parent
         anchors.margins: 2
     }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: cell.open()
+    }
 }

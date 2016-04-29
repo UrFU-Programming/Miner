@@ -35,14 +35,16 @@ public:
     bool isExploded() const { return m_exploded; }
 
     void setHaveMine(bool haveMine);
-    void open();
     void reset();
-    void toggleMark();
-    void tryToOpenAround();
     void setNeighbors(const QVector<Cell*> &neighbors);
     void reveal();
 
     QVector<Cell*> getNeighbors() const;
+
+public slots:
+    void open();
+    void toggleMark();
+    void tryToOpenAround();
 
 signals:
     void opened(int x, int y);
