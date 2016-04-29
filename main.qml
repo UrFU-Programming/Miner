@@ -11,6 +11,7 @@ Rectangle {
             model: field.width * field.height
 
             CellItem {
+                cell: field.cellAt(index % field.width, index / field.width)
             }
         }
     }

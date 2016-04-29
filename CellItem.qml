@@ -6,4 +6,6 @@ Rectangle {
     height: 64
     border.color: "black"
     border.width: 2
+
+    property Cell cell: null
 }
