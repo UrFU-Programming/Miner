@@ -9,6 +9,8 @@ class Cell;
 class Field : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int width READ width NOTIFY widthChanged)
+    Q_PROPERTY(int height READ height NOTIFY heightChanged)
 public:
     enum State {
         StateIdle,
@@ -41,6 +43,9 @@ protected slots:
 signals:
     void numberOfFlagsChanged(int numberOfFlags);
     void stateChanged(State newState);
+
+    void widthChanged(int newWidth);
+    void heightChanged(int newHeight);
 
 private:
     QVector<Cell*> m_cells;
