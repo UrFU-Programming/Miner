@@ -34,7 +34,7 @@ public:
     int numberOfFlags() const { return m_numberOfFlags; }
     State state() const { return m_state; }
 
-    Cell *cellAt(int x, int y) const;
+    Q_INVOKABLE Cell *cellAt(int x, int y) const;
 
 protected slots:
     void onCellOpened(int x, int y);
