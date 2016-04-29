@@ -17,6 +17,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    Field *field() const { return m_field; }
+
     explicit MainWindow(QWidget *parent = 0);
     void newGame();
     void resizeField(int width, int height);
