@@ -1,9 +1,18 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import GameComponents 1.0
 
 Rectangle {
     width: 800
     height: 600
+    focus: true
+    Keys.onPressed: {
+        if (event.matches(StandardKey.New)) {
+            field.startNewGame()
+        }
+        if ((event.key === Qt.Key_Q) && (event.modifiers & Qt.ControlModifier)) {
+            Qt.quit()
+        }
+    }
 
     Grid {
         columns: field.width

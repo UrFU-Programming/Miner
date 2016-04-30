@@ -23,5 +23,7 @@ int main(int argc, char *argv[])
     view.setSource(QUrl("qrc:///main.qml"));
     view.show();
 
+    QObject::connect(view.rootContext()->engine(), SIGNAL(quit()), QCoreApplication::instance(), SLOT(quit()));
+
     return a.exec();
 }

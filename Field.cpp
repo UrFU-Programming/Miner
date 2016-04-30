@@ -72,7 +72,7 @@ void maybeAddCell(QVector<Cell*> *vector, Cell *cell)
     }
 }
 
-void Field::prepare()
+void Field::startNewGame()
 {
     m_generated = false;
     m_numberOfOpenedCells = 0;

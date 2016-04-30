@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::newGame()
 {
-    m_field->prepare();
+    m_field->startNewGame();
     m_scene->update();
 }
 

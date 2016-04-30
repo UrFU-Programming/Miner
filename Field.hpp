@@ -29,7 +29,6 @@ public:
     void setNumberOfMines(int number);
 
     void generate(int x, int y);
-    void prepare();
     void lose();
     bool isGenerated() const { return m_generated; }
     bool resetInProgress() const { return m_resetInProgress; }
@@ -42,6 +41,9 @@ public:
     State state() const { return m_state; }
 
     Q_INVOKABLE Cell *cellAt(int x, int y) const;
+
+public slots:
+    void startNewGame();
 
 protected slots:
     void onCellOpened(int x, int y);
