@@ -21,7 +21,9 @@ Rectangle {
         height: parent.height * 0.1
 
         Text {
-            property string time: field.state === Field.StateIdle ? "00:00" : timer.minutes + ":" + timer.seconds
+            property string seconds: timer.seconds < 10 ? "0" + timer.seconds : timer.seconds
+            property string minutes: timer.minutes < 10 ? "0" + timer.minutes : timer.minutes
+            property string time: field.state === Field.StateIdle ? "00:00" : minutes + ":" + seconds
             font.pixelSize: parent.height * 0.6
             anchors.centerIn: parent
             text: "Time: " + time
@@ -36,7 +38,7 @@ Rectangle {
                 onTriggered: {
                     if (seconds === 59) {
                         minutes += 1
-                        seconds = 0
+                        seconds = -1
                     }
                     seconds += 1
                 }
