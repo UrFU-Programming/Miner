@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     view.rootContext()->setContextProperty("field", w.field());
     view.setSource(QUrl("qrc:///main.qml"));
     view.show();
+    view.setResizeMode(QQuickView::SizeRootObjectToView);
 
     QObject::connect(view.rootContext()->engine(), SIGNAL(quit()), QCoreApplication::instance(), SLOT(quit()));
 

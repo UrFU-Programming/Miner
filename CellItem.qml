@@ -2,8 +2,9 @@ import QtQuick 2.0
 import GameComponents 1.0
 
 Rectangle {
-    width: 64
-    height: 64
+    property int size: 64
+    width: size
+    height: size
     border.color: "black"
     border.width: 2
 
@@ -26,11 +27,11 @@ Rectangle {
             }
         }
         anchors.fill: parent
-        anchors.margins: 2
+        anchors.margins: (size * 0.14) < 2 ? 2 : size * 0.14
 
         Text {
             anchors.centerIn: parent
-            font.pixelSize: 60
+            font.pixelSize: size * 0.8
             text: {
                 if (!cell.isOpen) {
                     switch (cell.mark) {
