@@ -11,12 +11,16 @@ class Field : public QObject
     Q_OBJECT
     Q_PROPERTY(int width READ width NOTIFY widthChanged)
     Q_PROPERTY(int height READ height NOTIFY heightChanged)
+    Q_PROPERTY(State state READ state NOTIFY stateChanged)
+
 public:
     enum State {
         StateIdle,
         StateStarted,
         StateEnded
     };
+
+    Q_ENUM(State)
 
     Field();
 

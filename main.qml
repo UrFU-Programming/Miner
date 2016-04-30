@@ -15,4 +15,15 @@ Rectangle {
             }
         }
     }
+    Rectangle {
+        anchors.fill: parent
+        color: "#c0c0c0"
+        opacity: 0.7
+        visible: field.state === Field.StateEnded
+        Text {
+            anchors.centerIn: parent
+            font.pixelSize: 64
+            text: "Game over"
+        }
+    }
 }
