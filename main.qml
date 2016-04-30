@@ -8,13 +8,20 @@ Rectangle {
     Grid {
         columns: field.width
         Repeater {
-            model: field.width * field.height
+            model: {
+                if (field.resetInProgress) {
+                    return 0
+                } else {
+                    return field.width * field.height
+                }
+            }
 
             CellItem {
                 cell: field.cellAt(index % field.width, index / field.width)
             }
         }
     }
+
     Rectangle {
         anchors.fill: parent
         color: "#c0c0c0"

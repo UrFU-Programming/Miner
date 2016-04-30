@@ -11,6 +11,8 @@ Field::Field():
 
 void Field::setSize(int width, int height)
 {
+    m_resetInProgress = true;
+    emit progressChanged(resetInProgress());
     m_width = width;
     emit widthChanged(width);
     m_height = height;
@@ -29,6 +31,8 @@ void Field::setSize(int width, int height)
             m_cells.append(cell);
         }
     }
+    m_resetInProgress = false;
+    emit progressChanged(resetInProgress());
 }
 
 void Field::setNumberOfMines(int number)
