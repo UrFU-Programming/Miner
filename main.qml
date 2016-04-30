@@ -19,11 +19,34 @@ Rectangle {
         id: panel
         width: parent.width
         height: parent.height * 0.1
+
         Text {
-            property string time: "00:00"
+            property string time: field.state === Field.StateIdle ? "00:00" : timer.minutes + ":" + timer.seconds
             font.pixelSize: parent.height * 0.6
             anchors.centerIn: parent
             text: "Time: " + time
+
+            Timer {
+                id: timer
+                property int seconds: 0
+                property int minutes: 0
+                interval: 1000
+                repeat: true
+                running: field.state === Field.StateStarted
+                onTriggered: {
+                    if (seconds === 59) {
+                        minutes += 1
+                        seconds = 0
+                    }
+                    seconds += 1
+                }
+                onRunningChanged: {
+                    if (running) {
+                        seconds = 0
+                        minutes = 0
+                    }
+                }
+            }
         }
     }
 
