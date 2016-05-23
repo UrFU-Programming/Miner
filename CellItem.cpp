@@ -6,10 +6,10 @@
 
 #include "Cell.hpp"
 
-const int cellSize = 32;
+const int CellItem::cellSize = 32;
 
-CellItem::CellItem(Cell *cell) :
-    QGraphicsItem()
+CellItem::CellItem(Cell *cell, QGraphicsItem *parent) :
+    QGraphicsItem(parent)
 {
     m_cell = cell;
     m_text = new QGraphicsSimpleTextItem(this);
@@ -17,8 +17,6 @@ CellItem::CellItem(Cell *cell) :
     QFont f = m_text->font();
     f.setPixelSize(cellSize - 4);
     m_text->setFont(f);
-
-    setPos(m_cell->x() * cellSize, m_cell->y() * cellSize);
 }
 
 QRectF CellItem::boundingRect() const
@@ -37,11 +35,27 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     if (m_cell->isOpen()) {
         if (m_cell->haveMine()) {
             m_text->setText("+");
-        } else if (m_cell->minesAround() > 0) {
+            if (m_cell->isExploded()) {
+                painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::red);
+            } else {
+                painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::green);
+            }
+        } else if (m_cell->minesAround() != 0) {
             m_text->setText(QString::number(m_cell->minesAround()));
         }
     } else {
-        painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::lightGray);
+        painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2,Qt::lightGray);
+        switch (m_cell->mark()) {
+        case Cell::MarkNothing:
+            m_text->setText("");
+            break;
+        case Cell::MarkFlagged:
+            m_text->setText("!");
+            break;
+        case Cell::MarkQuestioned:
+            m_text->setText("?");
+            break;
+        }
     }
     m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
 }
@@ -54,7 +68,15 @@ void CellItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void CellItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        m_cell->open();
+        if (m_cell->isOpen()) {
+            m_cell->tryToOpenAround();
+        } else {
+            m_cell->open();
+        }
+    }
+
+    if (event->button() == Qt::RightButton) {
+        m_cell->toggleMark();
     }
 
     update();

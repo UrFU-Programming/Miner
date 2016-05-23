@@ -9,7 +9,8 @@ class QGraphicsSimpleTextItem;
 class CellItem : public QGraphicsItem
 {
 public:
-    CellItem(Cell *cell);
+    CellItem(Cell *cell, QGraphicsItem *parent = 0);
+    static const int cellSize;
 
     // QGraphicsItem interface
 public:
