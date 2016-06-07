@@ -26,5 +26,8 @@ HEADERS  += MainWindow.hpp \
 
 FORMS    += MainWindow.ui
 
+OTHER_FILES += main.qml \
+    CellItem.qml
+
 RESOURCES += \
     resources.qrc
